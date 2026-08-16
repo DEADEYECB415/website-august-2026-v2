@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu — Dead Eye Coffee</title>
+<meta name="description" content="The full menu at Dead Eye Coffee. Signature lattes, espresso, matcha and brew. South San Francisco, open every day 7am to 3pm.">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0D0A10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Newsreader:opsz,wght@6..72,200..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:        #0D0A10;
+  --ink-soft:   #17121D;
+  --bone:       #EFE8DD;
+  --bone-dim:   #9A9099;
+  --ube:        #7B5BC7;
+  --hairline:   rgba(239,232,221,.14);
+
+  /* flavor swatches — pulled from the actual ingredient */
+  --f-pandan:     #7FA05A;
+  --f-ube:        #7B5BC7;
+  --f-vanilla:    #E4D2AE;
+  --f-guava:      #E0806F;
+  --f-banana:     #E8D583;
+  --f-bananamat:  #A9BC63;
+  --f-ferrero:    #8A5A34;
+  --f-deadeye:    #2A1F18;
+  --f-espresso:   #4A3323;
+  --f-matcha:     #6F8F4A;
+  --f-choc:       #6B4A38;
+  --f-cold:       #3B2E44;
+  --f-drip:       #3A2A1E;
+  --f-redeye:     #6B3A2E;
+  --f-blackeye:   #33241C;
+  --f-milk:       #D6C3AA;
+  --f-milk-lt:    #E2D3BB;
+  --f-aulait:     #C9A882;
+  --f-honey:      #D9A441;
+  --f-strawberry: #D2566B;
+  --f-matcha-lt:  #8FC24A;
+  --f-tea:        #B08A55;
+  --f-chai:       #A9683C;
+  --f-genmaicha:  #9BA86A;
+  --f-earlgrey:   #6E7BA8;
+  --f-mint:       #5FBFA0;
+
+  --display: 'Archivo', system-ui, sans-serif;
+  --body: 'Newsreader', Georgia, serif;
+
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --rule: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--top-h,3.75rem) + 4.75rem)}
+body{
+  background:var(--ink);color:var(--bone);font-family:var(--body);
+  font-size:clamp(1rem,.95rem + .25vw,1.125rem);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ube);outline-offset:3px;border-radius:2px}
+
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+.slate{
+  font-family:var(--display);font-size:.6875rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-stretch:105%;
+}
+.display{
+  font-family:var(--display);font-weight:500;font-stretch:118%;
+  text-transform:uppercase;line-height:.94;letter-spacing:.02em;
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:relative;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.1rem var(--gutter);
+  background:rgba(13,10,16,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav__mark{
+  display:flex;align-items:center;
+  color:var(--bone);
+  transition:opacity .25s ease;
+}
+.nav__mark:hover{opacity:.72}
+.nav__mark .mark{width:1.75rem;height:1.75rem;display:block}
+.nav__links{display:flex;gap:clamp(.9rem,2.2vw,2rem);align-items:center}
+.nav__links a{font-family:var(--display);font-size:.75rem;font-weight:400;letter-spacing:.14em;color:var(--bone-dim);transition:color .25s ease}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--bone)}
+.nav__links a.is-cta{color:var(--bone);border:1px solid var(--hairline);padding:.5rem .9rem;border-radius:99px}
+.nav__links a.is-cta:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+@media (max-width:640px){ .nav__links a:not(.is-cta){display:none} }
+
+/* ---------- page head ---------- */
+.head{padding:calc(var(--top-h,3.75rem) + clamp(3.5rem,9vw,6.5rem)) var(--gutter) clamp(2rem,5vw,3rem);max-width:1240px;margin-inline:auto}
+.head__title{
+  font-family:var(--display);font-weight:300;font-stretch:125%;text-transform:uppercase;
+  font-size:clamp(2.75rem,12vw,8rem);line-height:.9;letter-spacing:.12em;text-indent:.12em;
+  margin-top:1.25rem;
+}
+.head__note{margin-top:1.75rem;max-width:44ch;color:var(--bone-dim);font-weight:200}
+
+/* ---------- sticky category rail ---------- */
+.rail{
+  position:sticky;top:var(--top-h,3.75rem);z-index:70;
+  background:rgba(13,10,16,.9);backdrop-filter:blur(14px);
+  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+}
+.rail__inner{
+  display:flex;gap:clamp(1rem,3vw,2.25rem);align-items:center;
+  padding:.9rem var(--gutter);max-width:1240px;margin-inline:auto;
+  overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.rail__inner::-webkit-scrollbar{display:none}
+.rail a{
+  font-family:var(--display);font-size:.72rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--bone-dim);white-space:nowrap;
+  padding-bottom:.2rem;border-bottom:1px solid transparent;transition:color .25s ease,border-color .25s ease;
+}
+.rail a:hover{color:var(--bone)}
+.rail a.is-active{color:var(--bone);border-bottom-color:var(--ube)}
+
+/* ---------- category bands ---------- */
+.cat{padding:var(--rule) var(--gutter);max-width:1240px;margin-inline:auto;border-bottom:1px solid var(--hairline)}
+.cat__head{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:baseline;justify-content:space-between;margin-bottom:clamp(1.75rem,4vw,2.75rem)}
+.cat__head h2{font-size:clamp(1.6rem,1.1rem + 2.4vw,2.9rem)}
+.cat__head p{max-width:34ch}
+
+.cat__list{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:0 clamp(2rem,5vw,4.5rem)}
+.pour{
+  display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;
+  padding:1.15rem 0;border-bottom:1px solid var(--hairline);
+  transition:padding-left .35s cubic-bezier(.2,.7,.3,1);
+}
+.pour:hover{padding-left:.6rem}
+.pour__dot{
+  width:12px;height:12px;border-radius:50%;
+  background:var(--c);box-shadow:0 0 0 1px rgba(239,232,221,.18), 0 0 22px -4px var(--c);
+}
+.pour__name{
+  font-family:var(--display);font-weight:500;font-stretch:110%;text-transform:uppercase;
+  letter-spacing:.11em;font-size:clamp(.92rem,.86rem + .35vw,1.12rem);line-height:1.25;
+}
+.pour--signature .pour__name{color:var(--bone)}
+@media (max-width:640px){ .cat__list{grid-template-columns:1fr} }
+
+/* ---------- close ---------- */
+.close{padding:var(--rule) var(--gutter);max-width:1240px;margin-inline:auto;text-align:center}
+.close h2{font-size:clamp(1.5rem,1.1rem + 2vw,2.5rem);margin-bottom:1rem}
+.close__fine{
+  font-size:.9rem;font-weight:200;font-style:italic;
+  color:var(--bone-dim);margin:0 auto 1.75rem;max-width:36ch;
+}
+.btn{
+  font-family:var(--display);font-size:.75rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;padding:.95rem 1.75rem;border-radius:99px;
+  border:1px solid var(--bone);background:var(--bone);color:var(--ink);
+  transition:transform .25s ease;display:inline-block;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn--ghost{background:transparent;color:var(--bone);border-color:var(--hairline)}
+.btn--ghost:hover{border-color:var(--bone)}
+.close__actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.close__note{margin-top:2rem}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--hairline);padding:var(--rule) var(--gutter) 2.5rem;max-width:1240px;margin-inline:auto}
+.foot__top{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2.5rem;margin-bottom:clamp(2.5rem,6vw,4rem)}
+.foot__col .slate{display:block;margin-bottom:1rem}
+.foot__col p,.foot__col a{display:block;color:var(--bone-dim);font-size:.98rem;line-height:1.8}
+.foot__col a:hover{color:var(--bone)}
+.foot__mark{
+  font-family:var(--display);font-weight:300;font-stretch:125%;text-transform:uppercase;
+  font-size:clamp(2.2rem,11vw,7rem);letter-spacing:.16em;text-indent:.16em;
+  text-align:center;color:rgba(239,232,221,.13);line-height:1;
+}
+.foot__base{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--hairline)}
+
+
+/* ---------- dismissible notice bar ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:85}
+.notice{
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  padding:.55rem var(--gutter);
+  background:#241A38;border-bottom:1px solid rgba(123,91,199,.4);
+  box-shadow:inset 0 2px 0 var(--ube);
+}
+.notice p{
+  font-family:var(--display);font-size:.68rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--bone);
+  text-align:center;line-height:1.4;
+}
+.notice__x{
+  position:absolute;right:calc(var(--gutter) - .35rem);
+  background:none;border:0;cursor:pointer;color:var(--bone-dim);
+  font-size:1.15rem;line-height:1;padding:.25rem .45rem;border-radius:99px;
+  transition:color .25s ease;
+}
+.notice__x:hover{color:var(--bone)}
+.notice{position:relative}
+.topbar.is-off .notice{display:none}
+@media (max-width:520px){
+  .notice p{font-size:.62rem;letter-spacing:.12em;padding-right:1.5rem}
+}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){
+  .head__title{animation:titlecard 1.5s cubic-bezier(.16,.9,.24,1) both}
+}
+@keyframes titlecard{
+  from{opacity:0;letter-spacing:.5em;text-indent:.5em;filter:blur(8px)}
+  to{opacity:1;letter-spacing:.12em;text-indent:.12em;filter:blur(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar is-off" id="topbar">
+  <div class="notice" id="notice">
+    <p>Online ordering is open Monday thru Thursday</p>
+    <button class="notice__x" id="noticeX" type="button" aria-label="Dismiss this notice">&times;</button>
+  </div>
+<nav class="nav">
+  <a href="index.html" class="nav__mark" aria-label="Dead Eye Coffee, home"><svg class="mark" viewBox="0 0 960 960" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><mask id="navMask"><rect width="960" height="960" fill="#000"/><circle cx="482" cy="483" r="451.5" fill="none" stroke="#fff" stroke-width="35"/><circle cx="482" cy="483" r="403" fill="#fff"/><path d="M469.0,482.0 390.0,618.8 232.0,618.8 153.0,482.0 232.0,345.2 390.0,345.2Z" fill="#000"/><path d="M731.0,330.0 652.0,466.8 494.0,466.8 415.0,330.0 494.0,193.2 652.0,193.2Z" fill="#000"/><path d="M731.0,634.0 652.0,770.8 494.0,770.8 415.0,634.0 494.0,497.2 652.0,497.2Z" fill="#000"/></mask></defs><rect width="960" height="960" fill="currentColor" mask="url(#navMask)"/></svg></a>
+  <div class="nav__links">
+    <a href="menu.html" aria-current="page">menu</a>
+    <a href="index.html#find">visit</a>
+    <a class="is-cta" href="https://order.deadeyecoffeebar.com/">Order ahead</a>
+  </div>
+</nav>
+</div>
+
+<header class="head">
+  <p class="slate">Open every day — 7am to 3pm</p>
+  <h1 class="head__title">Menu</h1>
+</header>
+
+<div class="rail">
+  <div class="rail__inner" id="rail">
+    <a href="#signature">Signature</a>
+    <a href="#coffee">Coffee</a>
+    <a href="#coldbrew">Cold Brew</a>
+    <a href="#matcha">Matcha &amp; Tea</a>
+    <a href="#notcoffee">Not Coffee</a>
+    <a href="#large">Large Format</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===== SIGNATURE ===== -->
+  <section class="cat" id="signature">
+    <div class="cat__head reveal">
+      <h2 class="display">Signature</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-vanilla)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Tahitian Vanilla</p>
+      </div>
+      <div class="pour" style="--c:var(--f-banana)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Banana Cream Pie</p>
+      </div>
+      <div class="pour" style="--c:var(--f-bananamat)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Banana Matcha Cream Pie</p>
+      </div>
+      <div class="pour" style="--c:var(--f-guava)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Guava Matcha</p>
+      </div>
+      <div class="pour" style="--c:var(--f-ube)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Ube</p>
+      </div>
+      <div class="pour" style="--c:var(--f-ferrero)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Ferrero Rocher</p>
+      </div>
+      <div class="pour" style="--c:var(--f-pandan)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Pandan</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COFFEE ===== -->
+  <section class="cat" id="coffee">
+    <div class="cat__head reveal">
+      <h2 class="display">Coffee</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-drip)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Coffee on Tap (Drip Coffee)</p>
+      </div>
+      <div class="pour" style="--c:var(--f-redeye)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Red Eye</p>
+      </div>
+      <div class="pour" style="--c:var(--f-blackeye)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Black Eye</p>
+      </div>
+      <div class="pour" style="--c:var(--f-deadeye)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Dead Eye</p>
+      </div>
+      <div class="pour" style="--c:var(--f-aulait)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Cafe Au Lait</p>
+      </div>
+      <div class="pour" style="--c:var(--f-espresso)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Americano</p>
+      </div>
+      <div class="pour" style="--c:var(--f-espresso)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Espresso</p>
+      </div>
+      <div class="pour" style="--c:var(--f-espresso)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Macchiato</p>
+      </div>
+      <div class="pour" style="--c:var(--f-aulait)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Cortado</p>
+      </div>
+      <div class="pour" style="--c:var(--f-milk)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Flat White</p>
+      </div>
+      <div class="pour" style="--c:var(--f-milk-lt)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Cappuccino</p>
+      </div>
+      <div class="pour" style="--c:var(--f-milk)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-choc)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Mocha</p>
+      </div>
+      <div class="pour" style="--c:var(--f-cold)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Espresso Tonic</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLD BREW ===== -->
+  <section class="cat" id="coldbrew">
+    <div class="cat__head reveal">
+      <h2 class="display">Cold Brew</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-cold)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Cold Brew</p>
+      </div>
+      <div class="pour" style="--c:var(--f-pandan)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Pandan Cold Brew</p>
+      </div>
+      <div class="pour" style="--c:var(--f-vanilla)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Tahitian Vanilla Cold Brew</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATCHA & TEA ===== -->
+  <section class="cat" id="matcha">
+    <div class="cat__head reveal">
+      <h2 class="display">Matcha &amp; Tea</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-matcha)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Latte (Unsweetened)</p>
+      </div>
+      <div class="pour" style="--c:var(--f-matcha)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Latte (Sweetened)</p>
+      </div>
+      <div class="pour" style="--c:var(--f-honey)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Honey Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-vanilla)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Vanilla Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-strawberry)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Strawberry Matcha Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-matcha-lt)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Fizz</p>
+      </div>
+      <div class="pour" style="--c:var(--f-tea)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Tea Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-chai)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Chai Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-genmaicha)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Genmaicha Green</p>
+      </div>
+      <div class="pour" style="--c:var(--f-earlgrey)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Earl Grey Remix</p>
+      </div>
+      <div class="pour" style="--c:var(--f-mint)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Kool Mint Herbal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOT COFFEE ===== -->
+  <section class="cat" id="notcoffee">
+    <div class="cat__head reveal">
+      <h2 class="display">Not Coffee</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-choc)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Hot Chocolate</p>
+      </div>
+      <div class="pour" style="--c:var(--f-vanilla)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Vanilla Steamer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LARGE FORMAT ===== -->
+  <section class="cat" id="large">
+    <div class="cat__head reveal">
+      <h2 class="display">Large Format — 32 oz Jugs</h2>
+    </div>
+    <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-vanilla)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Tahitian Vanilla Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-pandan)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Pandan Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-honey)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Honey Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-ube)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Ube Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-matcha)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Matcha Latte</p>
+      </div>
+      <div class="pour" style="--c:var(--f-cold)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Cold Brew</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="close reveal">
+  <h2 class="display">Order ahead, skip the wait</h2>
+  <p class="close__fine">*Online orders only available Monday thru Thursday</p>
+  <div class="close__actions">
+    <a class="btn" href="https://order.deadeyecoffeebar.com/">Order online</a>
+    <a class="btn btn--ghost" href="index.html#find">How to find us</a>
+  </div>
+  <p class="slate close__note">Prices and full options live on the ordering site</p>
+</section>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__col">
+      <p class="slate">Visit</p>
+      <a href="https://maps.google.com/?q=415+Grand+Ave+Ste+100+South+San+Francisco+CA+94080">415 Grand Ave, Ste 100<br>South San Francisco, CA 94080</a>
+    </div>
+    <div class="foot__col">
+      <p class="slate">Hours</p>
+      <p>Every day<br>7am — 3pm</p>
+    </div>
+    <div class="foot__col">
+      <p class="slate">Contact</p>
+      <a href="tel:+16507416619">(650) 741-6619</a>
+      <a href="mailto:brian@deadeyecoffeebar.com">brian@deadeyecoffeebar.com</a>
+    </div>
+    <div class="foot__col">
+      <p class="slate">Elsewhere</p>
+      <a href="https://www.instagram.com/deadeyecoffeebar/">Instagram</a>
+      <a href="https://order.deadeyecoffeebar.com/">Order online</a>
+      <a href="https://app.squareup.com/gift/SM73Y0EGBJ9ZN/order">eGift cards</a>
+    </div>
+  </div>
+
+  <p class="foot__mark">Dead Eye</p>
+
+  <div class="foot__base">
+    <p class="slate">Coffee + community — est. 2018</p>
+    <p class="slate">© <span id="yr">2026</span> Dead Eye Coffee</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // notice bar: only surfaces Fri-Sun, when online ordering is closed
+  (function(){
+    var topbar = document.getElementById('topbar');
+    var x = document.getElementById('noticeX');
+    if (!topbar) return;
+
+    function measure(){
+      document.documentElement.style.setProperty('--top-h', topbar.offsetHeight + 'px');
+    }
+
+    // day in Pacific time, so it follows the shop's week and not the visitor's
+    var day;
+    try {
+      day = new Date().toLocaleDateString('en-US', {timeZone:'America/Los_Angeles', weekday:'short'});
+    } catch (e) {
+      day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];
+    }
+    var ordersClosed = (day === 'Fri' || day === 'Sat' || day === 'Sun');
+
+    if (ordersClosed) topbar.classList.remove('is-off');
+    measure();
+
+    window.addEventListener('resize', measure, {passive:true});
+    if (x) x.addEventListener('click', function(){
+      topbar.classList.add('is-off');
+      measure();
+    });
+  })();
+
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.08, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+    // highlight the rail link for whichever category is in view
+    var railLinks = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var id = e.target.getAttribute('id');
+        railLinks.forEach(function(a){
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, {rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('.cat').forEach(function(el){ spy.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+</script>
+</body>
+</html>
