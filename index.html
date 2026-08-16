@@ -311,7 +311,7 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
 
 <div class="topbar is-off" id="topbar">
   <div class="notice" id="notice">
-    <p>Online ordering is open Monday thru Thursday</p>
+    <p>Online ordering is open Monday thru Friday</p>
     <button class="notice__x" id="noticeX" type="button" aria-label="Dismiss this notice">&times;</button>
   </div>
 <nav class="nav" id="nav">
@@ -429,7 +429,7 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
     <div class="pours__foot reveal">
       <a class="btn" href="https://order.deadeyecoffeebar.com/">Order ahead</a>
       <a class="btn btn--ghost" href="menu.html">See the full menu</a>
-      <p class="fine">*Online orders only available Monday thru Thursday</p>
+      <p class="fine">*Online orders only available Monday thru Friday</p>
     </div>
   </div>
 </section>
@@ -516,7 +516,7 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // notice bar: only surfaces Fri-Sun, when online ordering is closed
+  // notice bar: only surfaces Sat-Sun, when online ordering is closed
   (function(){
     var topbar = document.getElementById('topbar');
     var x = document.getElementById('noticeX');
@@ -533,7 +533,7 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
     } catch (e) {
       day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];
     }
-    var ordersClosed = (day === 'Fri' || day === 'Sat' || day === 'Sun');
+    var ordersClosed = (day === 'Sat' || day === 'Sun');
 
     if (ordersClosed) topbar.classList.remove('is-off');
     measure();
