@@ -109,6 +109,18 @@ hero watermark on the home page. Each copy needs its own mask `id`
 (`navMask`, `badgeMask`); duplicate ids on one page break the second one.
 The nav copy fills with `currentColor`, so it follows the nav text color.
 
+### Reviews
+
+The quotes on the home page are hand-entered in the `.says` section of
+`index.html`, not pulled live. Google and Yelp both prohibit scraping, and
+their APIs need a server-side key a static site cannot hold — Yelp's also
+caps excerpts at 160 characters and will not let you choose which reviews
+come back. To update, edit the `<blockquote>` blocks directly.
+
+Quotes are stored verbatim, including emoji, lowercase, and original
+punctuation. Keep it that way — altering a review's wording while
+attributing it to a named person is the one thing to avoid here.
+
 ### Ordering notice bar
 
 The bar appears Friday–Sunday only, in Pacific time, and hides the rest of

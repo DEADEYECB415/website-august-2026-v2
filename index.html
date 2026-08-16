@@ -217,6 +217,20 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
   color:var(--bone-dim);flex-basis:100%;margin-top:.25rem;
 }
 
+
+/* ---------- reviews ---------- */
+.says{border-top:1px solid var(--hairline);background:var(--ink-soft)}
+.says__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:clamp(2rem,5vw,3.5rem)}
+.say__rule{display:block;width:2rem;height:1px;background:var(--ube);margin-bottom:1.4rem}
+.say p{font-size:clamp(1.05rem,1rem + .35vw,1.25rem);font-weight:200;line-height:1.55}
+.say cite{
+  display:block;margin-top:1.1rem;font-style:normal;
+  font-family:var(--display);font-size:.66rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);
+}
+.say cite span{color:rgba(154,144,153,.65)}
+.says__foot{margin-top:clamp(2.5rem,6vw,4rem);display:flex;flex-wrap:wrap;gap:.75rem}
+
 /* ---------- footer ---------- */
 .foot{border-top:1px solid var(--hairline);padding:var(--rule) var(--gutter) 2.5rem;max-width:1240px;margin-inline:auto}
 .foot__top{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2.5rem;margin-bottom:clamp(3rem,7vw,5rem)}
@@ -402,6 +416,54 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
       <a class="btn" href="https://order.deadeyecoffeebar.com/">Order ahead</a>
       <a class="btn btn--ghost" href="menu.html">See the full menu</a>
       <p class="fine">*Online orders only available Monday thru Thursday</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="says" id="says">
+  <div class="band">
+    <div class="band__head reveal">
+      <p class="slate">Reviews</p>
+      <h2 class="display">What people<br>say about us</h2>
+    </div>
+
+    <div class="says__grid reveal">
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>Dead Eye Coffee is 🔥. Such a great spot with super tasty drinks…</p>
+          <cite>BeHappy Chan <span>— Google</span></cite>
+        </blockquote>
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>A superb little grab-and-go coffee spot!</p>
+          <cite>noosh <span>— Google</span></cite>
+        </blockquote>
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>Really great place — I honestly had a very good experience here.</p>
+          <cite>Valentin <span>— Google</span></cite>
+        </blockquote>
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>This coffee shop is pretty unique with it's Filipino influence…we enjoyed this coffee shop and what it offers. It's the best coffee shop in town!</p>
+          <cite>Allister <span>— Yelp</span></cite>
+        </blockquote>
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>Took the chance to stop by dead eye coffee after months of my friend recommending i go, and the visit did not disappoint.</p>
+          <cite>Tahnee <span>— Yelp</span></cite>
+        </blockquote>
+        <blockquote class="say">
+          <span class="say__rule" aria-hidden="true"></span>
+          <p>Cool small little spot that doesn't have a sign with their name rather with their symbol…The cashier was friendly and helpful despite it being busy.</p>
+          <cite>Cienna <span>— Yelp</span></cite>
+        </blockquote>
+    </div>
+
+    <div class="says__foot reveal">
+      <a class="btn btn--ghost" href="https://maps.google.com/?q=Dead+Eye+Coffee+Bar+415+Grand+Ave+South+San+Francisco">Read more on Google</a>
+      <a class="btn btn--ghost" href="https://www.yelp.com/biz/dead-eye-coffee-bar-south-san-francisco">Read more on Yelp</a>
     </div>
   </div>
 </section>
