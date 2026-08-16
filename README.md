@@ -14,6 +14,7 @@ assets/
   favicon.svg                 browser tab, scalable — modern browsers prefer this
   apple-touch-icon.png        iOS home screen, 180px, opaque
   icon-192.png / icon-512.png Android + manifest
+  og-image.jpg                link preview image, 1200x630
   deadeye-badge.png           badge logo, transparent, bone (#EFE8DD)
   deadeye-lockup.png          full lockup, transparent, bone — 2501px
   deadeye-lockup@1x.png       same, half size
@@ -109,17 +110,24 @@ hero watermark on the home page. Each copy needs its own mask `id`
 (`navMask`, `badgeMask`); duplicate ids on one page break the second one.
 The nav copy fills with `currentColor`, so it follows the nav text color.
 
-### Reviews
+### Link previews (Open Graph)
 
-The quotes on the home page are hand-entered in the `.says` section of
-`index.html`, not pulled live. Google and Yelp both prohibit scraping, and
-their APIs need a server-side key a static site cannot hold — Yelp's also
-caps excerpts at 160 characters and will not let you choose which reviews
-come back. To update, edit the `<blockquote>` blocks directly.
+Both pages carry Open Graph and Twitter Card tags, so links shared to
+iMessage, Instagram, Facebook, WhatsApp, Slack, or X show a large photo card
+with a title and description. The image is `assets/og-image.jpg`.
 
-Quotes are stored verbatim, including emoji, lowercase, and original
-punctuation. Keep it that way — altering a review's wording while
-attributing it to a named person is the one thing to avoid here.
+IMPORTANT: these tags use absolute URLs, hard-coded to
+`https://www.deadeyecoffeebar.com`. Open Graph does not accept relative
+paths. If the site lives at a different domain — including a temporary
+Netlify or GitHub Pages address — find and replace that string in both
+`index.html` and `menu.html`, or the preview image will not load.
+
+Test with Facebook's Sharing Debugger or opengraph.xyz after deploying.
+Platforms cache previews hard; the Debugger has a "Scrape Again" button that
+forces a refresh.
+
+Replacing the image: crop to exactly 1200x630, save as JPG under ~200KB,
+and keep the filename.
 
 ### Ordering notice bar
 
@@ -132,10 +140,10 @@ not run in preview environments.
 ## Known gaps
 
 - Hero photo or video is a placeholder.
-- No Open Graph tags — links shared to Instagram, iMessage, or Facebook
-  preview as a blank card. Needs a 1200x630 share image.
 - Interior pages for About and Catering do not exist yet; nothing links to them.
 - Menu prices are deliberately absent — Square is the source of truth.
 - Cross-street reference in the directions card ("between Linden and Maple")
   was unverified. Check it.
+- Open Graph URLs are hard-coded to www.deadeyecoffeebar.com. Update them if
+  the domain differs.
 - No analytics.
