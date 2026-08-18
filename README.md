@@ -15,6 +15,8 @@ assets/
   apple-touch-icon.png        iOS home screen, 180px, opaque
   icon-192.png / icon-512.png Android + manifest
   og-image.jpg                link preview image, 1200x630
+  hero.jpg                    hero photo, linked copy (see Backdrops)
+  storefront.jpg              "Finding us" photo, linked copy
   deadeye-badge.png           badge logo, transparent, bone (#EFE8DD)
   deadeye-lockup.png          full lockup, transparent, bone — 2501px
   deadeye-lockup@1x.png       same, half size
@@ -110,6 +112,31 @@ hero watermark on the home page. Each copy needs its own mask `id`
 (`navMask`, `badgeMask`); duplicate ids on one page break the second one.
 The nav copy fills with `currentColor`, so it follows the nav text color.
 
+### Backdrops
+
+Three sections on `index.html` sit on backdrops, built two different ways.
+
+Photos — hero and "Finding us" — are embedded directly in the CSS as base64
+data URIs, so they render even when the page is opened as a lone file. Each
+sits under a dark scrim that carries most of the legibility; the hero also
+gets a colour grade so the type never lands on the bright part of the image.
+
+The reviews section is different: the badge as an SVG data URI at 5.5%
+opacity, bleeding off the right edge, no scrim. About 1KB, and vector, so it
+stays sharp at any size.
+
+TO DO BEFORE LAUNCH (optional): the embedded photos make `index.html` ~244KB
+and cannot be cached separately from the page, so repeat visitors re-download
+them every time. `assets/hero.jpg` and `assets/storefront.jpg` are the same
+images as linked files at higher quality. Swapping back means replacing the
+`url('data:image/jpeg;base64,...')` value with `url('assets/hero.jpg')` — the
+hero has a `SWAP ME` comment marking the spot. Do this only after deploying,
+since linked images do not load when previewing a lone HTML file.
+
+Photos with signage in them age badly — hours boards, menu boards and price
+lists outlive the photo. The storefront shot is cropped above the window
+signage for exactly this reason.
+
 ### Link previews (Open Graph)
 
 Both pages carry Open Graph and Twitter Card tags, so links shared to
@@ -126,24 +153,22 @@ Test with Facebook's Sharing Debugger or opengraph.xyz after deploying.
 Platforms cache previews hard; the Debugger has a "Scrape Again" button that
 forces a refresh.
 
-Replacing the image: crop to exactly 1200x630, save as JPG under ~200KB,
-and keep the filename.
-
 ### Ordering notice bar
 
-The bar appears Friday–Sunday only, in Pacific time, and hides the rest of
-the week. To change which days, edit `ordersClosed` in the script at the
-bottom of each page. Dismissing it lasts for that page view only; making it
+Online ordering runs Monday–Friday, so the bar appears Saturday and Sunday
+only, in Pacific time. To change which days, edit `ordersClosed` in the
+script at the bottom of each page. The same window is stated in the fine
+print under the CTAs on both pages — update all three spots together. Dismissing it lasts for that page view only; making it
 stick across pages needs `localStorage`, which was left out because it does
 not run in preview environments.
 
 ## Known gaps
 
-- Hero photo or video is a placeholder.
 - Interior pages for About and Catering do not exist yet; nothing links to them.
 - Menu prices are deliberately absent — Square is the source of truth.
 - Cross-street reference in the directions card ("between Linden and Maple")
   was unverified. Check it.
 - Open Graph URLs are hard-coded to www.deadeyecoffeebar.com. Update them if
   the domain differs.
+- Hero and storefront photos are embedded rather than linked. See Backdrops.
 - No analytics.
