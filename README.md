@@ -112,6 +112,33 @@ hero watermark on the home page. Each copy needs its own mask `id`
 (`navMask`, `badgeMask`); duplicate ids on one page break the second one.
 The nav copy fills with `currentColor`, so it follows the nav text color.
 
+### Naming
+
+Two names, two jobs.
+
+"Dead Eye Coffee Bar" is the legal name and appears everywhere a machine
+reads: `<title>`, meta descriptions, Open Graph and Twitter titles,
+`og:site_name`, the manifest `name`, and the copyright line. It matches the
+Google Business Profile, Yelp and Square listings — keeping them identical is
+what tells search engines these are one business, which is what earns the map
+result. It also contains the short name, so it matches either search.
+
+"Dead Eye" / "Dead Eye Coffee" is what people see and say: the hero wordmark,
+the nav badge, the footer mark, the manifest `short_name`, social, and how
+staff answer the phone.
+
+When adding a page, follow the same split.
+
+### Analytics
+
+Google Analytics (gtag.js, property G-3Y4L3GNR21) loads at the top of
+`<head>` on both pages. Any new page needs the same block pasted in, or its
+traffic will not be counted.
+
+The script is loaded `async`, so it does not block rendering. There is no
+cookie consent banner — if you ever get meaningful EU or UK traffic, that
+becomes a GDPR question worth looking at.
+
 ### Backdrops
 
 Three sections on `index.html` sit on backdrops, built two different ways.
@@ -171,4 +198,3 @@ not run in preview environments.
 - Open Graph URLs are hard-coded to www.deadeyecoffeebar.com. Update them if
   the domain differs.
 - Hero and storefront photos are embedded rather than linked. See Backdrops.
-- No analytics.
