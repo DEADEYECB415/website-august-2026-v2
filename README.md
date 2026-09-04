@@ -1,4 +1,4 @@
-# Dead Eye Coffee — website
+# Dead Eye Coffee Bar — website
 
 Two static pages. No build step, no dependencies. Open `index.html` in a
 browser to preview locally, or upload the whole folder to any host.
@@ -22,7 +22,7 @@ assets/
   deadeye-lockup@1x.png       same, half size
 ```
 
-Keep `index.html`, `menu.html`, `site.webmanifest`, and the `assets` folder
+Keep `index.html`, `menu.html`, `site.webmanifest` and the `assets` folder
 together — the pages reference them by relative path.
 
 ## Deploying
@@ -31,29 +31,21 @@ Drag the folder onto Netlify Drop (netlify.com/drop), or push to GitHub and
 enable Pages. Both are free and handle static files. The homepage must be
 named `index.html` for either to serve it as the root.
 
-## Favicon
+## Naming
 
-Already wired up. Five tags sit at the top of `<head>` on both pages:
+Two names, two jobs.
 
-```html
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#0D0A10">
-```
+**Dead Eye Coffee Bar** is the legal name and appears everywhere a machine
+reads: `<title>`, meta descriptions, Open Graph and Twitter titles,
+`og:site_name`, the manifest `name`, and the copyright line. It matches the
+Google Business Profile, Yelp and Square listings — keeping them identical is
+what tells search engines these are one business, which is what earns the map
+result. It also contains the short name, so it matches either search.
 
-The icons put the bone badge on a dark ink tile rather than leaving it
-transparent. A near-white logo on a transparent background disappears
-against the light tab bar most people use — the tile keeps it legible on
-light and dark alike, and iOS composites transparent icons onto black
-anyway.
+**Dead Eye** is what people see and say: the hero wordmark, the nav badge,
+the footer mark, the manifest `short_name`, social, and the phone.
 
-Browsers cache favicons aggressively. If an old icon persists after
-deploying, hard-refresh or check in a private window.
-
-To regenerate at a different size or padding, the source is
-`assets/deadeye-badge.png`.
+When adding a page, follow the same split.
 
 ## Editing
 
@@ -65,7 +57,7 @@ Colors and spacing live in the `:root` block at the top of the `<style>` tag.
 | `--ink` | page background |
 | `--bone` | primary text |
 | `--bone-dim` | secondary text |
-| `--ube` | accent (nav underline, notice bar edge, step numbers) |
+| `--ube` | accent (nav underline, notice bar edge, step numbers, Seasonal pill) |
 | `--f-*` | menu swatch dots, one per flavor |
 | `--gutter` | left/right page margin |
 | `--rule` | vertical space between sections |
@@ -79,18 +71,6 @@ Colors and spacing live in the `:root` block at the top of the `<style>` tag.
 | Instagram | footer of both pages |
 | Google Maps | hours strip, directions block, footer |
 
-### Hero photo
-
-The hero background is CSS gradients standing in for a photo. In
-`index.html`, find `.hero__media` and the comment marked `SWAP ME`. Replace
-the gradients with:
-
-```css
-background:url('assets/hero.jpg') center/cover no-repeat;
-```
-
-The vignette and grain layers on top will still apply.
-
 ### Menu items
 
 Each item is one block. Copy an existing one and change the name and swatch:
@@ -102,99 +82,116 @@ Each item is one block. Copy an existing one and change the name and swatch:
 </div>
 ```
 
+Seasonal items carry a pill after the name:
+
+```html
+<p class="pour__name">Drink Name<span class="tag">Seasonal</span></p>
+```
+
 Adding a category also needs a matching link in the sticky rail near the top
-of the page, pointing at the section's `id`.
+of `menu.html`, pointing at the section's `id`.
+
+Items shown on both pages live in two files — `index.html` (Item highlights)
+and `menu.html` (Signature). Pulling a seasonal drink means removing it from
+both, plus its `--f-*` swatch token if nothing else uses it.
 
 ### Logo
 
-The badge is inline SVG in two places — the nav mark on both pages, and the
-hero watermark on the home page. Each copy needs its own mask `id`
-(`navMask`, `badgeMask`); duplicate ids on one page break the second one.
-The nav copy fills with `currentColor`, so it follows the nav text color.
-
-### Naming
-
-Two names, two jobs.
-
-"Dead Eye Coffee Bar" is the legal name and appears everywhere a machine
-reads: `<title>`, meta descriptions, Open Graph and Twitter titles,
-`og:site_name`, the manifest `name`, and the copyright line. It matches the
-Google Business Profile, Yelp and Square listings — keeping them identical is
-what tells search engines these are one business, which is what earns the map
-result. It also contains the short name, so it matches either search.
-
-"Dead Eye" / "Dead Eye Coffee" is what people see and say: the hero wordmark,
-the nav badge, the footer mark, the manifest `short_name`, social, and how
-staff answer the phone.
-
-When adding a page, follow the same split.
-
-### Analytics
-
-Google Analytics (gtag.js, property G-3Y4L3GNR21) loads at the top of
-`<head>` on both pages. Any new page needs the same block pasted in, or its
-traffic will not be counted.
-
-The script is loaded `async`, so it does not block rendering. There is no
-cookie consent banner — if you ever get meaningful EU or UK traffic, that
-becomes a GDPR question worth looking at.
+The badge is inline SVG in three places — the nav mark on both pages, and the
+reviews backdrop on the home page. Each copy needs its own mask `id`;
+duplicate ids on one page break the second one. The nav copy fills with
+`currentColor`, so it follows the nav text color.
 
 ### Backdrops
 
-Three sections on `index.html` sit on backdrops, built two different ways.
+Three sections on `index.html` sit on backdrops, built two ways.
 
-Photos — hero and "Finding us" — are embedded directly in the CSS as base64
-data URIs, so they render even when the page is opened as a lone file. Each
-sits under a dark scrim that carries most of the legibility; the hero also
-gets a colour grade so the type never lands on the bright part of the image.
+Photos — hero and "Finding us" — are embedded in the CSS as base64 data URIs,
+so they render even when the page is opened as a lone file. Each sits under a
+dark scrim that carries most of the legibility; the hero also gets a colour
+grade so the type never lands on the bright part of the image.
 
 The reviews section is different: the badge as an SVG data URI at 5.5%
 opacity, bleeding off the right edge, no scrim. About 1KB, and vector, so it
 stays sharp at any size.
 
-TO DO BEFORE LAUNCH (optional): the embedded photos make `index.html` ~244KB
-and cannot be cached separately from the page, so repeat visitors re-download
-them every time. `assets/hero.jpg` and `assets/storefront.jpg` are the same
-images as linked files at higher quality. Swapping back means replacing the
+OPTIONAL BEFORE LAUNCH: the embedded photos make `index.html` ~244KB and
+cannot be cached separately from the page, so repeat visitors re-download them
+every time. `assets/hero.jpg` and `assets/storefront.jpg` are the same images
+as linked files at higher quality. Swapping back means replacing the
 `url('data:image/jpeg;base64,...')` value with `url('assets/hero.jpg')` — the
 hero has a `SWAP ME` comment marking the spot. Do this only after deploying,
 since linked images do not load when previewing a lone HTML file.
 
 Photos with signage in them age badly — hours boards, menu boards and price
 lists outlive the photo. The storefront shot is cropped above the window
-signage for exactly this reason.
+signage for exactly that reason.
+
+### Reviews
+
+The quotes on the home page are hand-entered in the `.says` section of
+`index.html`, not pulled live. Google and Yelp both prohibit scraping, and
+their APIs need a server-side key a static site cannot hold — Yelp's also caps
+excerpts at 160 characters and will not let you choose which reviews come
+back. To update, edit the `<blockquote>` blocks directly.
+
+Quotes are stored verbatim, including emoji, lowercase and original
+punctuation. Keep it that way — altering a review's wording while attributing
+it to a named person is the one thing to avoid here.
 
 ### Link previews (Open Graph)
 
 Both pages carry Open Graph and Twitter Card tags, so links shared to
-iMessage, Instagram, Facebook, WhatsApp, Slack, or X show a large photo card
+iMessage, Instagram, Facebook, WhatsApp, Slack or X show a large photo card
 with a title and description. The image is `assets/og-image.jpg`.
 
 IMPORTANT: these tags use absolute URLs, hard-coded to
-`https://www.deadeyecoffeebar.com`. Open Graph does not accept relative
-paths. If the site lives at a different domain — including a temporary
-Netlify or GitHub Pages address — find and replace that string in both
-`index.html` and `menu.html`, or the preview image will not load.
+`https://www.deadeyecoffeebar.com`. Open Graph does not accept relative paths.
+If the site lives at a different domain — including a temporary Netlify or
+GitHub Pages address — find and replace that string in both `index.html` and
+`menu.html`, or the preview image will not load.
 
 Test with Facebook's Sharing Debugger or opengraph.xyz after deploying.
 Platforms cache previews hard; the Debugger has a "Scrape Again" button that
 forces a refresh.
 
+### Favicon
+
+Five tags at the top of `<head>` on both pages cover browser tabs, iOS home
+screens and Android. The icons put the bone badge on a dark ink tile rather
+than leaving it transparent — a near-white logo on a transparent background
+disappears against the light tab bar most people use.
+
+Browsers cache favicons aggressively. If an old icon persists after deploying,
+hard-refresh or check in a private window.
+
+### Analytics
+
+Google Analytics (gtag.js, property G-3Y4L3GNR21) loads at the top of `<head>`
+on both pages. Any new page needs the same block pasted in, or its traffic
+will not be counted.
+
+The script loads `async`, so it does not block rendering. There is no cookie
+consent banner — if you ever get meaningful EU or UK traffic, that becomes a
+GDPR question worth looking at.
+
 ### Ordering notice bar
 
 Online ordering runs Monday–Friday, so the bar appears Saturday and Sunday
-only, in Pacific time. To change which days, edit `ordersClosed` in the
-script at the bottom of each page. The same window is stated in the fine
-print under the CTAs on both pages — update all three spots together. Dismissing it lasts for that page view only; making it
-stick across pages needs `localStorage`, which was left out because it does
-not run in preview environments.
+only, in Pacific time. To change which days, edit `ordersClosed` in the script
+at the bottom of each page. The same window is stated in the fine print under
+the CTAs on both pages — update all three spots together.
+
+Dismissing it lasts for that page view only; making it stick across pages
+needs `localStorage`, which was left out because it does not run in preview
+environments.
 
 ## Known gaps
 
-- Interior pages for About and Catering do not exist yet; nothing links to them.
-- Menu prices are deliberately absent — Square is the source of truth.
-- Cross-street reference in the directions card ("between Linden and Maple")
-  was unverified. Check it.
 - Open Graph URLs are hard-coded to www.deadeyecoffeebar.com. Update them if
   the domain differs.
 - Hero and storefront photos are embedded rather than linked. See Backdrops.
+- Interior pages for About and Catering do not exist yet; nothing links to them.
+- Menu prices are deliberately absent — Square is the source of truth.
+- Cross-street reference in the directions card ("between Linden and Maple")
+  was never verified. Check it.

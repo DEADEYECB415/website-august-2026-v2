@@ -53,6 +53,7 @@
   --f-banana:     #E8D583;
   --f-bananamat:  #A9BC63;
   --f-ferrero:    #8A5A34;
+  --f-coco:       #C7D6A8;
   --f-deadeye:    #2A1F18;
   --f-espresso:   #4A3323;
   --f-matcha:     #6F8F4A;
@@ -177,6 +178,13 @@ body::after{
   letter-spacing:.11em;font-size:clamp(.92rem,.86rem + .35vw,1.12rem);line-height:1.25;
 }
 .pour--signature .pour__name{color:var(--bone)}
+.tag{
+  display:inline-block;margin-left:.5rem;vertical-align:.08em;
+  font-family:var(--display);font-size:.54rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ube);
+  border:1px solid rgba(123,91,199,.5);border-radius:99px;padding:.14rem .45rem;
+  white-space:nowrap;
+}
 @media (max-width:640px){ .cat__list{grid-template-columns:1fr} }
 
 /* ---------- close ---------- */
@@ -295,6 +303,10 @@ body::after{
       <h2 class="display">Signature</h2>
     </div>
     <div class="cat__list reveal">
+      <div class="pour" style="--c:var(--f-coco)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Coco Cream Pandan Matcha Latte<span class="tag">Seasonal</span></p>
+      </div>
       <div class="pour" style="--c:var(--f-vanilla)">
         <span class="pour__dot" aria-hidden="true"></span>
         <p class="pour__name">Tahitian Vanilla</p>

@@ -54,6 +54,7 @@
   --f-banana:     #E8D583;
   --f-bananamat:  #A9BC63;
   --f-ferrero:    #8A5A34;
+  --f-coco:       #C7D6A8;
   --f-deadeye:    #2A1F18;
 
   --display: 'Archivo', system-ui, sans-serif;
@@ -242,6 +243,12 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
 .pour__name{font-family:var(--display);font-weight:500;font-stretch:110%;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(.9rem,.85rem + .3vw,1.05rem)}
 .pour__note{color:var(--bone-dim);font-size:.98rem;line-height:1.5}
 .pour--signature .pour__name{color:var(--bone)}
+.tag{
+  display:inline-block;margin-left:.6rem;vertical-align:.08em;
+  font-family:var(--display);font-size:.56rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ube);
+  border:1px solid rgba(123,91,199,.5);border-radius:99px;padding:.16rem .5rem;
+}
 .pour--signature .pour__note{color:var(--bone)}
 @media (max-width:700px){
   .pour{grid-template-columns:auto 1fr;gap:.85rem 1rem;align-items:center}
@@ -405,6 +412,11 @@ h2.display{font-size:clamp(1.9rem,1.2rem + 3.2vw,3.6rem)}
     </div>
 
     <div class="reveal">
+      <div class="pour" style="--c:var(--f-coco)">
+        <span class="pour__dot" aria-hidden="true"></span>
+        <p class="pour__name">Coco Cream Pandan Matcha Latte<span class="tag">Seasonal</span></p>
+        <p class="pour__note">House premium matcha and pandan under a coconut cream top.</p>
+      </div>
       <div class="pour pour--signature" style="--c:var(--f-deadeye)">
         <span class="pour__dot" aria-hidden="true"></span>
         <p class="pour__name">Dead Eye</p>
